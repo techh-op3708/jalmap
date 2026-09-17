@@ -8,7 +8,7 @@ export default function Navbar() {
   const location = useLocation();
   const [open, setOpen] = useState(false);
 
-  const isDashboard = location.pathname === '/';
+  const isDashboard = location.pathname === '/dashboard';
 
   return (
     <header className="sticky top-0 z-[1000] bg-brand-deep text-white shadow-lg">
@@ -64,14 +64,14 @@ export default function Navbar() {
           <button
             onClick={() => navigate('/overview')}
             className={`hidden items-center gap-1.5 rounded-lg px-3 py-2 text-sm font-medium transition sm:flex ${
-              location.pathname === '/' ? 'bg-white/20' : 'hover:bg-white/10'
+              location.pathname.startsWith('/overview') || location.pathname.startsWith('/map/') ? 'bg-white/20' : 'hover:bg-white/10'
             }`}
           >
             <Map className="h-4 w-4" />
             Map
           </button>
           <button
-            onClick={() => navigate('/')}
+            onClick={() => navigate('/dashboard')}
             className={`flex items-center gap-1.5 rounded-lg px-3 py-2 text-sm font-medium transition ${
               isDashboard ? 'bg-white/20' : 'hover:bg-white/10'
             }`}

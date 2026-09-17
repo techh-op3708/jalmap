@@ -14,7 +14,8 @@ export default function App() {
           <Navbar />
           <div className="mx-auto max-w-7xl px-4 py-4 sm:px-6 lg:px-8">
             <Routes>
-              <Route path="/" element={<Dashboard />} />
+              <Route path="/" element={<About />} />
+              <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/overview" element={<IndiaOverview />} />
               <Route path="/map/:stateId" element={<IndiaOverview />} />
               <Route path="/state/:stateId" element={<StateDetail />} />
