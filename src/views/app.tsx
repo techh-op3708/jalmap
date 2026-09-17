@@ -4,6 +4,7 @@ import { WaterDataProvider } from '../data/liveWaterData';
 import IndiaOverview from './IndiaOverview.tsx';
 import StateDetail from './StateDetail.tsx';
 import Dashboard from './Dashboard.tsx';
+import About from './About.tsx';
 
 export default function App() {
   return (
@@ -17,6 +18,7 @@ export default function App() {
               <Route path="/overview" element={<IndiaOverview />} />
               <Route path="/map/:stateId" element={<IndiaOverview />} />
               <Route path="/state/:stateId" element={<StateDetail />} />
+              <Route path="/about" element={<About />} />
               <Route path="*" element={<Navigate to="/" replace />} />
             </Routes>
           </div>

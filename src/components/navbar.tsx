@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { Droplets, ChevronDown, LayoutDashboard, Map } from 'lucide-react';
+import { Droplets, ChevronDown, Info, LayoutDashboard, Map } from 'lucide-react';
 import { STATES } from '../data/waterdata';
 
 export default function Navbar() {
@@ -78,6 +78,15 @@ export default function Navbar() {
           >
             <LayoutDashboard className="h-4 w-4" />
             <span className="hidden sm:inline">Dashboard</span>
+          </button>
+          <button
+            onClick={() => navigate('/about')}
+            className={`hidden items-center gap-1.5 rounded-lg px-3 py-2 text-sm font-medium transition sm:flex ${
+              location.pathname === '/about' ? 'bg-white/20' : 'hover:bg-white/10'
+            }`}
+          >
+            <Info className="h-4 w-4" />
+            About
           </button>
         </div>
       </div>
