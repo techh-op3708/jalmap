@@ -1,0 +1,73 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model State {
+  id          String @id
+  name        String
+  lat         Float
+  lng         Float
+  overallRisk String @map("overall_risk")
+  cities      City[]
+
+  @@map("states")
+}
+
+model City {
+  id          Int      @id @default(autoincrement())
+  stateId     String   @map("state_id")
+  cityName    String   @map("city_name")
+  district    String
+  lat         Float
+  lng         Float
+  source      String
+  tds         Int
+  ph          Float
+  turbidity   Float
+  fluoride    Float
+  nitrate     Int
+  arsenic     Float
+  risk        String
+  reason      String
+  contaminants String[]
+  updatedAt   DateTime @map("updated_at")
+  state       State    @relation(fields: [stateId], references: [id])
+
+  @@map("cities")
+}
+
+model WaterReading {
+  id          Int      @id @default(autoincrement())
+  stateId     String   @map("state_id")
+  cityName    String   @map("city_name")
+  district    String
+  lat         Float
+  lng         Float
+  source      String
+  tds         Int
+  ph          Float
+  turbidity   Float
+  fluoride    Float
+  nitrate     Int
+  arsenic     Float
+  risk        String
+  reason      String
+  contaminants String[]
+  updatedAt   DateTime @map("updated_at")
+
+  @@map("water_quality_readings")
+}
+
+model RiskSnapshot {
+  id          Int      @id @default(autoincrement())
+  stateId     String   @map("state_id")
+  overallRisk String   @map("overall_risk")
+  generatedAt DateTime @map("generated_at")
+
+  @@map("risk_snapshots")
+}

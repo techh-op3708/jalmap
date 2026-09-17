@@ -1,0 +1,90 @@
+@import 'leaflet/dist/leaflet.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html, body, #root {
+  height: 100%;
+  margin: 0;
+  font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, 'Roboto', sans-serif;
+  background: linear-gradient(135deg, #06243d 0%, #0a3d59 35%, #1b8a8f 100%);
+  color: #e6f7fb;
+}
+
+body {
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    radial-gradient(circle at 15% 20%, rgba(255,255,255,0.16) 0 1px, transparent 2px),
+    radial-gradient(circle at 85% 35%, rgba(255,255,255,0.12) 0 1px, transparent 2px),
+    radial-gradient(circle at 30% 80%, rgba(255,255,255,0.14) 0 1px, transparent 2px);
+  background-size: 220px 220px, 260px 260px, 240px 240px;
+  opacity: 0.5;
+  animation: drift 18s ease-in-out infinite alternate;
+}
+
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(180deg, rgba(255,255,255,0.12) 0%, rgba(255,255,255,0) 40%, rgba(255,255,255,0.08) 100%);
+  mix-blend-mode: screen;
+  opacity: 0.6;
+}
+
+.leaflet-container {
+  font-family: inherit;
+  z-index: 0;
+}
+
+.leaflet-popup-content-wrapper {
+  border-radius: 12px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+}
+
+.leaflet-popup-content {
+  margin: 12px 14px;
+  line-height: 1.4;
+}
+
+/* Smooth view transition */
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-in {
+  animation: fade-in 0.4s ease-out;
+}
+
+@keyframes drift {
+  from { transform: translate3d(0, 0, 0); }
+  to { transform: translate3d(6px, -10px, 0); }
+}
+
+/* Card hover lift */
+.card-hover {
+  transition: transform 180ms ease, box-shadow 180ms ease, background-color 180ms ease;
+}
+.card-hover:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 14px 36px rgba(10, 25, 47, 0.16);
+}
+
+/* Subtle badge pulse for higher risks */
+@keyframes pulse-slow {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.04); }
+  100% { transform: scale(1); }
+}
+.badge-pulse {
+  animation: pulse-slow 2.5s ease-in-out infinite;
+}
